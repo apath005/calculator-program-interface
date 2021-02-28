@@ -10,13 +10,13 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "div.hpp"
-#include "pow.hpp"
-#include "sub.hpp"
-#include "add.hpp"
-#include "mult.hpp"
 #include "op.hpp"
 #include "rand.hpp"
+#include "add.hpp"
+#include "sub.hpp"
+#include "mult.hpp"
+#include "div.hpp"
+#include "pow.hpp"
 
 using std::cout;
 using std::endl;
@@ -26,13 +26,13 @@ class Base;
 class Factory {
     public:
       Base* parse(char** input, int length){
-        std::string a;
-        std::queue<std::string> q;
-        std::stack<std::string> s;
-        std::queue<Base*> q2;
-        Base* temp1 = temp1;
-        Base* temp2 = temp2;
-        Base* temp3 = temp3;
+	std::string a;
+	std::queue<std::string> q;
+	std::stack<std::string> s;
+	std::queue<Base*> q2;
+	Base* temp1 = temp1;
+	Base* temp2 = temp2;
+	Base* temp3 = temp3;
 	Base* temp4 = temp4;
         double operand;
 
