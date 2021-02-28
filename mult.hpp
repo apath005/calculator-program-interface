@@ -3,22 +3,27 @@
 
 #include "base.hpp"
 
-class Mult : public Base {
+class Mult : public Base
+{
 private:
-    Base* a ;
-    Base* b ;
+	Base* a;
+	Base* b;
+	double leftOperand;
+	double rightOperand;
+	std::string lhs;
+	std::string rhs;
 public:
-    Mult(Base* a, Base* b) : Base() { 
-	this->a = a; 
-	this->b = b; 
+	Mult(Base* a, Base* b) : Base() {
+		leftOperand = a->evaluate();
+		rightOperand = b->evaluate();
+		lhs = a->stringify();
+		rhs = b->stringify();
 	}
-    	virtual double evaluate() { 
-		return a->evaluate() * b->evaluate(); 
+	virtual double evaluate() {
+		return (leftOperand * rightOperand);
 	}
-    	virtual std::string stringify() { 
-		return (a->stringify() + " * " + b->stringify()); 
+	virtual std::string stringify() {
+		return lhs + " * " + rhs;
 	}
 };
-
-#endif //__MULT_HPP__
-
+#endif

@@ -3,26 +3,29 @@
 
 #include "base.hpp"
 
-#include<math.h>
-
 #include<cmath>
 
-class Pow : public Base {
+class Pow : public Base
+{
 private:
-    Base* a ;
-    Base* b ;
+	Base* a;
+	Base* b;
+	double leftOperand;
+	double rightOperand;
+	std::string lhs;
+	std::string rhs;
 public:
-    Pow() : Base() {}
-    Pow(Base* a, Base* b) : Base() {
-        this->a = a;
-        this->b = b;
+	Pow(Base* a, Base* b) : Base() {
+		leftOperand = a->evaluate();
+		rightOperand = b->evaluate();
+		lhs = a->stringify();
+		rhs = b->stringify();
 	}
 	virtual double evaluate() {
-        	return std::pow(a->evaluate(), b->evaluate()); 
+		return std::pow(leftOperand, rightOperand);
 	}
 	virtual std::string stringify() {
-        	return (a->stringify() + " ** " + b->stringify());
+		return lhs + " ** " + rhs;
 	}
 };
-
-#endif //__POW_HPP__
+#endif

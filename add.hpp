@@ -3,21 +3,27 @@
 
 #include "base.hpp"
 
-class Add : public Base {
+class Add : public Base
+{
 private:
-    Base* a ;
-    Base* b ;
+	Base* a;
+	Base* b;
+	double leftOperand;
+	double rightOperand;
+	std::string lhs;
+	std::string rhs;
 public:
-    Add(Base* a, Base* b) : Base() { 
-	this->a = a; 
-	this->b = b; 
+	Add(Base* a, Base* b) : Base() {
+		leftOperand = a->evaluate();
+		rightOperand = b->evaluate();
+		lhs = a->stringify();
+		rhs = b->stringify();
 	}
-        virtual double evaluate() { 
-		return a->evaluate() + b->evaluate(); 
+	virtual double evaluate() {
+		return (leftOperand + rightOperand);
 	}
-        virtual std::string stringify() { 
-		return (a->stringify() + " + " + b->stringify()); 
+	virtual std::string stringify() {
+		return lhs + " + " + rhs;
 	}
 };
-
 #endif //__ADD_HPP__
