@@ -24,8 +24,8 @@ using std::endl;
 class Base;
 
 class Factory {
-    public:
-      Base* parse(char** input, int length){
+public:
+	Base* parse(char** input, int length){
 	std::string a;
 	std::queue<std::string> q;
 	std::stack<std::string> s;
@@ -37,7 +37,7 @@ class Factory {
         double operand;
 
         for (int i = 1; i < length; ++i){
-        a = static_cast<std::string>(input[i]);
+        a = std::string(input[i]);
           if (isdigit(a.at(0))){
             q.push(input[i]);
         }
@@ -60,7 +60,7 @@ class Factory {
         }
 
        	while(!q.empty()){
-       	a = static_cast<std::string>(q.front());
+       	a = std::string(q.front());
       	if (a == "+") {
     	   temp2 = q2.front();
 	   q2.pop();
@@ -122,5 +122,6 @@ class Factory {
 	return 0;
       }
 };
+
 
 #endif
