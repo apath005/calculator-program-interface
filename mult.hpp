@@ -14,6 +14,8 @@ private:
 	std::string rhs;
 public:
 	Mult(Base* a, Base* b) : Base() {
+                this->a = a;
+                this->b = b;
 		leftOperand = a->evaluate();
 		rightOperand = b->evaluate();
 		lhs = a->stringify();
