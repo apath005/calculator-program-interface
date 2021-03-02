@@ -27,8 +27,8 @@ class Factory {
 public:
 	Base* parse(char** input, int length){
 	std::string a;
-	std::queue<std::string> q;
-	std::stack<std::string> s;
+	std::queue<std::string> queue;
+	std::stack<std::string> stack;
 	std::queue<Base*> q2;
 	Base* temp1 = temp1;
 	Base* temp2 = temp2;
@@ -39,14 +39,14 @@ public:
         for (int i = 1; i < length; ++i){
         a = std::string(input[i]);
           if (isdigit(a.at(0))){
-            q.push(input[i]);
+            queue.push(input[i]);
         }
           else if (a == "+" || a == "-" || a == "*" || a == "/" || a == "**"){
-            while(!s.empty()){
-              q.push(s.top());
-              s.pop();
+            while(!stack.empty()){
+              queue.push(stack.top());
+              stack.pop();
         }
-            s.push(input[i]);
+            stack.push(input[i]);
         }
           else {
           cout << "ERROR: invalid input" << endl;
@@ -54,13 +54,13 @@ public:
         }
         }
 
-        while(!s.empty()){
-          q.push(s.top());
-          s.pop();
+        while(!stack.empty()){
+          queue.push(stack.top());
+          stack.pop();
         }
 
-       	while(!q.empty()){
-       	a = std::string(q.front());
+       	while(!queue.empty()){
+       	a = std::string(queue.front());
       	if (a == "+") {
     	   temp2 = q2.front();
 	   q2.pop();
@@ -69,7 +69,7 @@ public:
        	   Base* temp1 = new Add(temp2, temp3);
      	   q2.push(temp1);
 	   delete temp2, temp3;
-      	   q.pop();
+      	   queue.pop();
           }
           else if (a == "-") {
            temp2 = q2.front();
@@ -79,7 +79,7 @@ public:
            Base* temp1 = new Sub(temp2, temp3);
            q2.push(temp1);
 	   delete temp2, temp3;
-           q.pop();
+           queue.pop();
           }
           else if (a == "*"){
            temp2 = q2.front();
@@ -89,7 +89,7 @@ public:
            Base* temp1 = new Mult(temp2, temp3);
            q2.push(temp1);
 	   delete temp2, temp3;
-           q.pop();
+           queue.pop();
           }
           else if (a == "/"){
            temp2 = q2.front();
@@ -99,7 +99,7 @@ public:
            Base* temp1 = new Div(temp2, temp3);
            q2.push(temp1);
 	   delete temp2, temp3;
-           q.pop();
+           queue.pop();
           }
           else if (a == "**"){
            temp2 = q2.front();
@@ -109,12 +109,12 @@ public:
            Base* temp1 = new Pow(temp2, temp3);
            q2.push(temp1);
 	   delete temp2, temp3;
-           q.pop();
+           queue.pop();
           }
           else {
      	   double operand = stod(a);
            Base* temp4 = new Op(operand);
-           q.pop();
+           queue.pop();
            q2.push(temp4);
           }
 	}
