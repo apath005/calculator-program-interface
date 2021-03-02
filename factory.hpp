@@ -1,15 +1,10 @@
 #ifndef __FACTORY_HPP__
 #define __FACTORY_HPP__
 
-#include "base.hpp"
 #include <queue>
 #include <stack>
-#include <iostream>
-#include <cstring>
-#include <string>
-#include <ctype.h>
-#include <stdio.h>
-#include <stdlib.h>
+
+#include "base.hpp"
 #include "op.hpp"
 #include "rand.hpp"
 #include "add.hpp"

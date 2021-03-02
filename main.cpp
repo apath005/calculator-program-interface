@@ -1,13 +1,10 @@
 #include <iostream>
-#include "add.hpp"
-#include "sub.hpp"
-#include "div.hpp"
-#include "op.hpp"
-#include "pow.hpp"
-#include "mult.hpp"
-#include "factory.hpp"
+
+#include<string>
+
 #include "base.hpp"
-#include <string>
+
+#include "factory.hpp"
 
 using std::cout;
 using std::endl;
