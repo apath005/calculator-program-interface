@@ -1,15 +1,10 @@
 #ifndef __FACTORY_HPP__
 #define __FACTORY_HPP__
 
-#include "base.hpp"
 #include <queue>
 #include <stack>
-#include <iostream>
-#include <cstring>
-#include <string>
-#include <ctype.h>
-#include <stdio.h>
-#include <stdlib.h>
+
+#include "base.hpp"
 #include "op.hpp"
 #include "rand.hpp"
 #include "add.hpp"
@@ -24,26 +19,27 @@ using std::endl;
 class Base;
 
 class Factory {
-    public:
-      Base* parse(char** input, int length){
+public:
+	Base* parse(char** input, int length){
 	std::string a;
-	std::queue<std::string> q;
-	std::stack<std::string> s;
+	std::queue<std::string> queue;
+	std::stack<std::string> stack;
 	std::queue<Base*> q2;
 	Base* temp2 = temp2;
 	Base* temp3 = temp3;
 
-        for (int i = 1; i < length; ++i) {
-        a = static_cast<std::string>(input[i]);
-          if (isdigit(a.at(0))) {
-            q.push(input[i]);
+        for (int i = 1; i < length; ++i){
+        a = std::string(input[i]);
+          if (isdigit(a.at(0))){
+            queue.push(input[i]);
         }
-          else if (a == "+" || a == "-" || a == "*" || a == "/" || a == "**") {
-            while(!s.empty()){
-              q.push(s.top());
-              s.pop();
+          else if (a == "+" || a == "-" || a == "*" || a == "/" || a == "**"){
+            while(!stack.empty()){
+              queue.push(stack.top());
+              stack.pop();
+
         }
-            s.push(input[i]);
+            stack.push(input[i]);
         }
           else {
           cout << "ERROR: invalid input" << endl;
@@ -51,13 +47,13 @@ class Factory {
         }
         }
 
-        while(!s.empty()){
-          q.push(s.top());
-          s.pop();
+        while(!stack.empty()){
+          queue.push(stack.top());
+          stack.pop();
         }
 
-       	while(!q.empty()){
-       	a = static_cast<std::string>(q.front());
+       	while(!queue.empty()){
+       	a = std::string(queue.front());
       	if (a == "+") {
     	   temp2 = q2.front();
 	   q2.pop();
@@ -65,7 +61,7 @@ class Factory {
 	   q2.pop();
      	   q2.push(new Add(temp2, temp3));
 	   delete temp2, temp3;
-      	   q.pop();
+      	   queue.pop();
           }
           else if (a == "-") {
            temp2 = q2.front();
@@ -74,7 +70,7 @@ class Factory {
            q2.pop();
            q2.push(new Sub(temp2, temp3));
 	   delete temp2, temp3;
-           q.pop();
+           queue.pop();
           }
           else if (a == "*"){
            temp2 = q2.front();
@@ -83,7 +79,7 @@ class Factory {
            q2.pop();
            q2.push(new Mult(temp2, temp3));
 	   delete temp2, temp3;
-           q.pop();
+           queue.pop();
           }
           else if (a == "/"){
            temp2 = q2.front();
@@ -92,7 +88,7 @@ class Factory {
            q2.pop();
            q2.push(new Div(temp2, temp3));
 	   delete temp2, temp3;
-           q.pop();
+           queue.pop();
           }
           else if (a == "**"){
            temp2 = q2.front();
@@ -101,17 +97,20 @@ class Factory {
            q2.pop();
            q2.push(new Pow(temp2, temp3));
 	   delete temp2, temp3;
-           q.pop();
+           queue.pop();
           }
           else {
-           q.pop();
-           q2.push(new Op(stod(a)));
-          }
-	}
 
+           queue.pop();
+           q2.push(new Op(stod(a)));
+
+          }
+	    }
+  
         return q2.front();
-	return 0;
+        return 0;
       }
 };
+
 
 #endif
