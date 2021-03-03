@@ -5,12 +5,19 @@
 #include <stack>
 
 #include "base.hpp"
+
 #include "op.hpp"
+
 #include "rand.hpp"
+
 #include "add.hpp"
+
 #include "sub.hpp"
+
 #include "mult.hpp"
+
 #include "div.hpp"
+
 #include "pow.hpp"
 
 using std::cout;
@@ -60,7 +67,8 @@ public:
  	   temp3 = q2.front();
 	   q2.pop();
      	   q2.push(new Add(temp2, temp3));
-	   delete temp2, temp3;
+	   delete temp2; 
+	   delete temp3;
       	   queue.pop();
           }
           else if (a == "-") {
@@ -69,7 +77,8 @@ public:
            temp3 = q2.front();
            q2.pop();
            q2.push(new Sub(temp2, temp3));
-	   delete temp2, temp3;
+	   delete temp2; 
+	   delete temp3;
            queue.pop();
           }
           else if (a == "*"){
@@ -78,7 +87,8 @@ public:
            temp3 = q2.front();
            q2.pop();
            q2.push(new Mult(temp2, temp3));
-	   delete temp2, temp3;
+	   delete temp2; 
+	   delete temp3;
            queue.pop();
           }
           else if (a == "/"){
@@ -87,7 +97,8 @@ public:
            temp3 = q2.front();
            q2.pop();
            q2.push(new Div(temp2, temp3));
-	   delete temp2, temp3;
+	   delete temp2; 
+	   delete temp3;
            queue.pop();
           }
           else if (a == "**"){
@@ -96,17 +107,15 @@ public:
            temp3 = q2.front();
            q2.pop();
            q2.push(new Pow(temp2, temp3));
-	   delete temp2, temp3;
+	   delete temp2; 
+	   delete temp3;
            queue.pop();
           }
           else {
-
            queue.pop();
            q2.push(new Op(stod(a)));
-
           }
-	    }
-  
+	}
         return q2.front();
         return 0;
       }
