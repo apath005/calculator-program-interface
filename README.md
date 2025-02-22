@@ -1,9 +1,5 @@
 # Factory Pattern
 
-> Author: Brian Crites ([@brrcrites](https://github.com/brrcrites))
-
-**You *must* work in a group of two for this lab**
-
 In this lab you will create a factory which can take in user input and generate a correct expression tree, represented by a `Base*` root node which will be returned to the caller. Your factory should have a single public method `Base* parse(char** input, int length)`. You will need to parse the inputs to generate the corresponding expression tree, and can assume there are no parenthesies and spaces between each number and operator. You also do not need to consider precedence for the operations and can assume they should be executed from left to right. For example, the input `3 + 2 * 6` would result in `(3 + 2) * 6 = 30` rather than the normal `3 + (2 * 6) = 15` In the case that the input is invalid you should print an error and return back a `nullptr` to the caller.
 
 
